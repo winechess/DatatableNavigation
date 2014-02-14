@@ -17,7 +17,27 @@ var down = function() {
     PF('table').originRowIndex = index;
 };
 
+var up = function() {
+    var rows = PF('table').tbody[0].childElementCount;
+    var index = PF('table').originRowIndex;
+
+    if (index === 0) {
+        index = rows - 1;
+    } else {
+        index--;
+    }
+
+    PF('table').unselectAllRows();
+    PF('table').selectRow(index);
+    PF('table').originRowIndex = index;
+}
+
 $("#table_div").keydown(function(event) {
+
+    if (event.which === 38) {
+        event.preventDefault();
+        up();
+    }
 
     if (event.which === 40) {
         event.preventDefault();
