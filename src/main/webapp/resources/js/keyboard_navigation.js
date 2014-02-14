@@ -1,6 +1,6 @@
 var down = function() {
     //If no rows selected, select first row
-    if(PF('table').selection.length === 0){
+    if (PF('table').selection.length === 0) {
         PF('table').selectRow(0);
         return;
     }
@@ -37,6 +37,15 @@ var up = function() {
     PF('table').originRowIndex = index;
 }
 
+var enter = function() {
+    updateCarDialog();
+    PF('carDialog').show();
+}
+
+var hide = function() {
+    PF('carDialog').hide();
+}
+
 $("#table_div").keydown(function(event) {
 
     if (event.which === 38) {
@@ -49,4 +58,13 @@ $("#table_div").keydown(function(event) {
         down();
     }
 
+    if (event.which === 13) {
+        event.preventDefault();
+        enter();
+    }
+
+    if (event.which === 27) {
+        event.preventDefault();
+        hide();
+    }
 });

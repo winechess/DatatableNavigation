@@ -2,13 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Datatable navigation example</title>
     </h:head>
     <h:body>
         <h:form id="form" prependId="false">  
+
+            <p:remoteCommand name="updateCarDialog" update=":form:display" 
+                             process=":form:dataTable" />
 
             <div tabindex="1" id="table_div">
                 <p:dataTable widgetVar="table" var="car" value="#{tableBean.cars}"
@@ -30,10 +32,6 @@
                     <p:column headerText="Color">  
                         #{car.color}  
                     </p:column>  
-                    <f:facet name="footer">  
-                        <p:commandButton id="viewButton" value="View" icon="ui-icon-search"  
-                                         update=":form:display" oncomplete="PF('carDialog').show()"/>  
-                    </f:facet>  
 
                 </p:dataTable>  
             </div>
