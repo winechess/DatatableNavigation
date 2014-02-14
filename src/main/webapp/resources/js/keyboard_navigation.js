@@ -7,6 +7,8 @@ var down = function() {
     PF('table').unselectAllRows();
     //select new row 
     PF('table').selectRow(index);
+    //change originRowIndex value
+    PF('table').originRowIndex = index;
 };
 
 $("#table_div").keydown(function(event) {
