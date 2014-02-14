@@ -1,12 +1,60 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Datatable navigation example</title>
     </h:head>
     <h:body>
-        
+        <h:form id="form">  
+
+            <p:dataTable widgetVar="table" var="car" value="#{tableBean.cars}"
+                         selectionMode="single" selection="#{tableBean.selectedCar}"
+                         id="dataTable" rowKey="#{car.model}">
+
+                <p:column headerText="Model">  
+                    #{car.model}  
+                </p:column>  
+
+                <p:column headerText="Year">  
+                    #{car.year}  
+                </p:column>  
+
+                <p:column headerText="Manufacturer" >  
+                    #{car.manufacturer}  
+                </p:column>  
+
+                <p:column headerText="Color">  
+                    #{car.color}  
+                </p:column>  
+                <f:facet name="footer">  
+                    <p:commandButton id="viewButton" value="View" icon="ui-icon-search"  
+                                     update=":form:display" oncomplete="PF('carDialog').show()"/>  
+                </f:facet>  
+
+            </p:dataTable>  
+
+            <p:dialog id="dialog" header="Car Detail" widgetVar="carDialog" resizable="false"  
+                      showEffect="fade" hideEffect="explode">  
+
+                <h:panelGrid id="display" columns="2" cellpadding="4">  
+
+                    <h:outputText value="Model:" />  
+                    <h:outputText value="#{tableBean.selectedCar.model}" />  
+
+                    <h:outputText value="Year:" />  
+                    <h:outputText value="#{tableBean.selectedCar.year}" />  
+
+                    <h:outputText value="Manufacturer:" />  
+                    <h:outputText value="#{tableBean.selectedCar.manufacturer}" />  
+
+                    <h:outputText value="Color:" />  
+                    <h:outputText value="#{tableBean.selectedCar.color}" />  
+                </h:panelGrid>  
+            </p:dialog>  
+
+        </h:form>  
     </h:body>
 </html>
-
