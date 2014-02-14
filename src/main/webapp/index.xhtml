@@ -8,33 +8,35 @@
         <title>Datatable navigation example</title>
     </h:head>
     <h:body>
-        <h:form id="form">  
+        <h:form id="form" prependId="false">  
 
-            <p:dataTable widgetVar="table" var="car" value="#{tableBean.cars}"
-                         selectionMode="single" selection="#{tableBean.selectedCar}"
-                         id="dataTable" rowKey="#{car.model}">
+            <div tabindex="1" id="table_div">
+                <p:dataTable widgetVar="table" var="car" value="#{tableBean.cars}"
+                             selectionMode="single" selection="#{tableBean.selectedCar}"
+                             id="dataTable" rowKey="#{car.model}">
 
-                <p:column headerText="Model">  
-                    #{car.model}  
-                </p:column>  
+                    <p:column headerText="Model">  
+                        #{car.model}  
+                    </p:column>  
 
-                <p:column headerText="Year">  
-                    #{car.year}  
-                </p:column>  
+                    <p:column headerText="Year">  
+                        #{car.year}  
+                    </p:column>  
 
-                <p:column headerText="Manufacturer" >  
-                    #{car.manufacturer}  
-                </p:column>  
+                    <p:column headerText="Manufacturer" >  
+                        #{car.manufacturer}  
+                    </p:column>  
 
-                <p:column headerText="Color">  
-                    #{car.color}  
-                </p:column>  
-                <f:facet name="footer">  
-                    <p:commandButton id="viewButton" value="View" icon="ui-icon-search"  
-                                     update=":form:display" oncomplete="PF('carDialog').show()"/>  
-                </f:facet>  
+                    <p:column headerText="Color">  
+                        #{car.color}  
+                    </p:column>  
+                    <f:facet name="footer">  
+                        <p:commandButton id="viewButton" value="View" icon="ui-icon-search"  
+                                         update=":form:display" oncomplete="PF('carDialog').show()"/>  
+                    </f:facet>  
 
-            </p:dataTable>  
+                </p:dataTable>  
+            </div>
 
             <p:dialog id="dialog" header="Car Detail" widgetVar="carDialog" resizable="false"  
                       showEffect="fade" hideEffect="explode">  
@@ -56,5 +58,8 @@
             </p:dialog>  
 
         </h:form>  
+
+        <h:outputScript library="js" name="keyboard_navigation.js"/>
+
     </h:body>
 </html>
