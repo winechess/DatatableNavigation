@@ -1,4 +1,9 @@
 var down = function() {
+    //If no rows selected, select first row
+    if(PF('table').selection.length === 0){
+        PF('table').selectRow(0);
+        return;
+    }
     //get index of selected row, if no row is selected return 0
     var index = PF('table').originRowIndex;
     //get amount of rows in the table
